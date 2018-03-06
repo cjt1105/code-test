@@ -1,0 +1,20 @@
+{
+  "name": "code-test",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "CJT1105 <CJT1105@GMAIL.COM>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/cjt1105/code-test",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7"
+  }
+}
