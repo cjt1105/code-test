@@ -1,9 +1,11 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglifyjs');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglifyjs');
+const handlebars = require('gulp-compile-handlebars');
+const rename = require('gulp-rename');
 
-var config = {
+const config = {
   bowerDir: './bower_components',
   publicDir: './public',
 };
@@ -28,13 +30,20 @@ gulp.task('js', function() {
 });
 
 gulp.task('html',function(){
-    gulp.src('./index.html')
-        .pipe(gulp.dest('./public'))
+  return gulp.src('./index.hbs')
+  .pipe(handlebars({}, {
+    ignorePartials: true,
+    batch: ['./partials']
+  }))
+  .pipe(rename({
+    extname: '.html'
+  }))
+  .pipe(gulp.dest('./public'));
 });
 
 gulp.task('img',function(){
-    gulp.src('./img/beechwood.svg')
-        .pipe(gulp.dest('./public/img'))
+  return gulp.src('./img/beechwood.svg')
+    .pipe(gulp.dest('./public/img'))
 });
 
 gulp.task('css', function() {
